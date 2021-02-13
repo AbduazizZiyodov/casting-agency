@@ -15,6 +15,8 @@ JSON_URL = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
 GUIDE https://auth0.com/docs/quickstart/backend/python/01-authorization
 """
 # AuthError Exception
+
+
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
@@ -51,6 +53,7 @@ def get_token_auth_header():
 
     return token
 
+
 '''
 @TODO implement check_permissions(permission, payload) method
     @INPUTS
@@ -63,6 +66,8 @@ def get_token_auth_header():
     return true otherwise
 '''
 # Function for checking permission from payload data
+
+
 def check_permissions(permission, payload):
     # define permissions from payload data
     permissions = payload.get('permissions', None)
@@ -72,12 +77,13 @@ def check_permissions(permission, payload):
             'code': 401,
             'message': 'Any permissions not in token'
         }, 401)
-    # if permission in payload, but this permission is not suitable for doing smth.   
+    # if permission in payload, but this permission is not suitable for doing smth.
     if permission not in permissions:
         raise AuthError({
             'code': 401,
             'message': 'Permission not found this action'
         }, 401)
+
 
 '''
 @TODO implement verify_decode_jwt(token) method
@@ -91,6 +97,8 @@ def check_permissions(permission, payload):
     !!NOTE urlopen has a common certificate error described
 '''
 # function for decode jwt token (+verify)
+
+
 def verify_decode_jwt(token):
     # get key from our auth0 server
     json_url = urlopen(JSON_URL)
@@ -182,4 +190,4 @@ def requires_auth(permission=''):
         return wrapper
     # finally we can return our decorator
     return requires_auth_decorator
-# This decorator is usable  :) 
+# This decorator is usable  :)

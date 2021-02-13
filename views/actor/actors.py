@@ -98,7 +98,6 @@ def add_new_actor(token):
 
     return abort(400)
 
-
 @actor.route('/actor/<int:id>', methods=['PATCH'])
 @requires_auth('update:actors')
 def update_actor(token, id):

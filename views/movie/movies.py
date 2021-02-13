@@ -103,6 +103,7 @@ def update_movie(token, id):
 
         try:
             movie.update()
+            
         except:
             abort(422)
 
