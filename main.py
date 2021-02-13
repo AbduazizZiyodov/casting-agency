@@ -10,6 +10,7 @@ from flask_cors import CORS
 from logging import FileHandler, Formatter, INFO
 # -------------------------------------------- #
 from database.models import db, Actor, Movie
+from views.actor import actor
 
 
 api = Flask(__name__)
