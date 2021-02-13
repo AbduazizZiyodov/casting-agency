@@ -16,7 +16,7 @@ def get_all_movies(token):
             "message": "No Movies Found",
             "number_of_movies": len(data),
             "success": False
-        }), 404
+        }), 200
 
     response = {
         "success": True,

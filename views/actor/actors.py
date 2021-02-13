@@ -21,7 +21,7 @@ def get_all_actors(token):
             "message": "No Actors Found",
             "number_of_actors": len(data),
             "success": False
-        }), 404
+        }), 200
 
     response = {
         "success": True,
