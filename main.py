@@ -17,6 +17,8 @@ from views.auth import requires_auth, AuthError
 
 api = Flask(__name__)
 
+api.register_blueprint(actor, url_prefix='/api')
+api.register_blueprint(movie, url_prefix='/api')
 
 db.init_app(api)
 db.app = api
@@ -51,5 +53,3 @@ def docs():
     return redirect(
         'https://abduaziz-ziyodov.gitbook.io/casting-agency/'
     )
-
-
