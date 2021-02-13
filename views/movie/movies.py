@@ -2,9 +2,11 @@ from flask import Blueprint, jsonify, abort, request
 # ------------------------------------------------ #
 from views.movie import movie
 from database.models import Actor, Movie
+from ..auth import requires_auth, AuthError
 
 
 @movie.route('/movies', methods=['GET'])
+@requires_auth('read:movies')
 def get_all_movies(token):
 
     data = Movie.query.all()
@@ -28,6 +30,7 @@ def get_all_movies(token):
 
 
 @movie.route('/movies/add', methods=['POST'])
+@requires_auth('add:movies')
 def add_new_movie(token):
     data = request.get_json()
 
@@ -58,6 +61,7 @@ def add_new_movie(token):
 
 
 @movie.route('/movie/<int:id>', methods=['PATCH'])
+@requires_auth('update:movies')
 def update_movie(token,id):
 
     movie = Movie.query.get(id)
@@ -90,6 +94,7 @@ def update_movie(token,id):
 
 
 @movie.route('/movie/<int:id>', methods=['DELETE'])
+@requires_auth('delete:movies')
 def delete_movie(token,id):
     if not id:
         abort(404)

@@ -7,9 +7,12 @@ from flask import (
 # ---------------------------------------- #
 from views.actor import actor
 from database.models import Actor, Movie
+from ..auth import requires_auth, AuthError
+
 
 
 @actor.route('/actors', methods=['GET'])
+@requires_auth('read:actors')
 def get_all_actors(token):
     data = Actor.query.all()
 
@@ -30,6 +33,7 @@ def get_all_actors(token):
     return jsonify(response), 200
 
 @actor.route('/actors/add', methods=['POST'])
+@requires_auth('add:actors')
 def add_new_actor(token):
     data = request.get_json()
 
@@ -64,6 +68,7 @@ def add_new_actor(token):
     return jsonify(response), 200
 
 @actor.route('/actor/<int:id>', methods=['PATCH'])
+@requires_auth('update:actors')
 def update_actor(token,id):
     data = request.get_json()
 
@@ -94,7 +99,8 @@ def update_actor(token,id):
 
 
 @actor.route('/actor/<int:id>', methods=['DELETE'])
-def delete_actor(token,id):
+@requires_auth('delete:actors')
+def delete_actor(tokenm,id):
     if not id:
         abort(404)
 
