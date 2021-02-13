@@ -34,10 +34,12 @@ def get_all_movies(token):
 def add_new_movie(token):
     data = request.get_json()
 
-    if len(data['title']) == 0 or len(data['release_date']) == 0:
-        abort(400)
+    try:
+        title, date = data["title"], data["release_date"]    
+    except KeyError:
+        abort(400) 
 
-    movie = Movie.query.filter_by(title=data['title']).first()
+    movie = Movie.query.filter_by(title=title).first()
 
     if movie:
         return jsonify({
@@ -46,8 +48,8 @@ def add_new_movie(token):
         })
 
     new_movie = Movie(
-        title=data['title'],
-        release_date=data['release_date']
+        title=title,
+        release_date=date
     )
 
     new_movie.insert()
@@ -71,16 +73,13 @@ def update_movie(token,id):
 
     data = request.get_json()
 
-    if len(data['title']) == 0 or len(data['release_date']) == 0:
-        abort(400)
-
     try:
-        if data['title'] and data['release_date']:
-            movie.title = data['title']
-            movie.release_date = data['release_date']
+        title, date = data["title"], data["release_date"]    
+    except KeyError:
+        abort(400) 
 
-    except:
-        abort(400)
+    movie.title = title
+    movie.release_date = date
 
     movie.update()
 
