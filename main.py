@@ -11,6 +11,7 @@ from logging import FileHandler, Formatter, INFO
 # -------------------------------------------- #
 from database.models import db, Actor, Movie
 from views.actor import actor
+from views.movie import movie
 
 
 api = Flask(__name__)
