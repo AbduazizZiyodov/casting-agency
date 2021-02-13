@@ -53,3 +53,62 @@ def docs():
     return redirect(
         'https://abduaziz-ziyodov.gitbook.io/casting-agency/'
     )
+    
+@api.errorhandler(AuthError)
+def auth_error(AuthError):
+    return (jsonify(
+        {
+            "error": AuthError.status_code,
+            "message": AuthError.error["message"],
+            "success": False,
+        }
+    ), AuthError.status_code,)
+
+@api.errorhandler(400)
+def bad_request(error):
+    return jsonify({
+        "success": False,
+        "error": 400,
+        "message": "Bad Request"}), 400
+
+@api.errorhandler(403)
+def forbidden(error):
+    return jsonify({
+        "success": False,
+        "error": 403,
+        "message": "Forbidden"}), 403
+
+@api.errorhandler(404)
+def not_found(error):
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "Not found"}), 404
+
+@api.errorhandler(405)
+def method_not_allowed(error):
+    return jsonify({
+        "success": False,
+        "error": 405,
+        "message": "Method Not Allowed"}), 405
+
+@api.errorhandler(422)
+def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "Unprocessable"}), 422
+
+@api.errorhandler(500)
+def server_error(error):
+    return jsonify({
+        "success": False,
+        "error": 500,
+        "message": "Internal Server Error"}), 500
+
+@api.errorhandler(502)
+def bad_gateway(error):
+    return jsonify({
+        "success": False,
+        "error": 502,
+        "message": "Bad Gateway"}), 502
