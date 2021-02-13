@@ -1,14 +1,34 @@
 from flask import (
-    Blueprint, 
-    abort, 
-    jsonify, 
+    Blueprint,
+    abort,
+    jsonify,
     request
-)    
+)
 # ---------------------------------------- #
 from views.actor import actor
 from database.models import Actor, Movie
 from ..auth import requires_auth, AuthError
 
+
+# Request Data Validator:
+def is_num(n):
+    if isinstance(n, int):
+        return True
+    if isinstance(n, float):
+        return n.is_integer()
+
+    return False
+
+
+def validate(name, age, gender):
+    genders = ["men", "women"]
+
+    if len(name) > 1 and \
+            gender.lower() in genders and \
+            is_num(age):
+        return True
+    else:
+        return False
 
 
 @actor.route('/actors', methods=['GET'])
@@ -32,48 +52,61 @@ def get_all_actors(token):
 
     return jsonify(response), 200
 
+
 @actor.route('/actors/add', methods=['POST'])
 @requires_auth('add:actors')
 def add_new_actor(token):
     data = request.get_json()
 
-
-    if 'name' not in data or\
-       'age' not in data or\
-       'gender' not in data:
+    if data is None:
         abort(400)
 
-    new_actor = Actor(
-        name=data['name'],
-        age=data['age'],
-        gender=data['gender']
-    )
+    try:
+        name = data["name"]
+        age = data["age"]
+        gender = data["gender"]
 
-    actor = Actor.query.filter_by(name=data["name"]).first()
+    except KeyError:
+        abort(400)
 
-    if actor:
-        return jsonify({
-            "mesage":"This actor is already available",
-            "success": False
-        })
+    if validate(name, age, gender):
 
-    
-    new_actor.insert()
+        new_actor = Actor(
+            name=name,
+            age=age,
+            gender=gender.lower()
+        )
 
-    response = {
-        "success": True,
-        "actor": new_actor.format()
-    }
+        actor = Actor.query.filter_by(name=data["name"]).first()
+
+        if actor:
+            return jsonify({
+                "mesage": "This actor is already available",
+                "success": False
+            })
+
+        try:
+            new_actor.insert()
+        except:
+            abort(422)
+
+        response = {
+            "success": True,
+            "actor": new_actor.format()
+        }
+
+    abort(400)
 
     return jsonify(response), 200
 
+
 @actor.route('/actor/<int:id>', methods=['PATCH'])
 @requires_auth('update:actors')
-def update_actor(token,id):
-    data = request.get_json()
-
+def update_actor(token, id):
     if not id:
         abort(404)
+
+    data = request.get_json()
 
     actor = Actor.query.get(id)
 
@@ -81,31 +114,41 @@ def update_actor(token,id):
         abort(404)
 
     try:
-        if data['name'] and data['age'] and data['gender']:
-            actor.name, actor.age,  actor.gender = data['name'],\
-                                    data['age'], data['gender']
+        name = data['name']
+        age = data['age']
+        gender = data['gender']
 
-    except Exception:
+    except KeyError:
         abort(400)
 
-    actor.update()
+    if validate(name, age, gender):
 
-    response = {
-        'success': True,
-        'message': "Actor Updated!",
-        'actor': actor.format()
-    }
-    return jsonify(response), 200
+        actor.name, actor.age, actor.gender = name, age, gender
+
+        try:
+            actor.update()
+        except:
+            abort(422)
+
+        response = {
+            'success': True,
+            'message': "Actor Updated!",
+            'actor': actor.format()
+        }
+        return jsonify(response), 200
+
+    else:
+        return abort(400)
 
 
 @actor.route('/actor/<int:id>', methods=['DELETE'])
 @requires_auth('delete:actors')
-def delete_actor(tokenm,id):
+def delete_actor(tokenm, id):
     if not id:
         abort(404)
 
     data = Actor.query.get(id)
-    
+
     if not data:
         abort(404)
     try:

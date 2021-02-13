@@ -5,6 +5,15 @@ from database.models import Actor, Movie
 from ..auth import requires_auth, AuthError
 
 
+def validate(title, date):
+
+    if len(title) > 1 and len(date) > 3:
+        return True
+
+    else:
+        return False
+
+
 @movie.route('/movies', methods=['GET'])
 @requires_auth('read:movies')
 def get_all_movies(token):
@@ -34,37 +43,43 @@ def get_all_movies(token):
 def add_new_movie(token):
     data = request.get_json()
 
+    if data is None:
+        abort(400)
+
     try:
-        title, date = data["title"], data["release_date"]    
+        title, date = data["title"], data["release_date"]
+
     except KeyError:
-        abort(400) 
+        abort(400)
 
-    movie = Movie.query.filter_by(title=title).first()
+    if validate(title, date):
+        movie = Movie.query.filter_by(title=title).first()
 
-    if movie:
-        return jsonify({
-            "mesage":"This film is already available",
-            "success": False
-        })
+        if movie:
+            return jsonify({
+                "mesage": "This film is already available",
+                "success": False
+            })
+        new_movie = Movie(
+            title=title,
+            release_date=date
+        )
 
-    new_movie = Movie(
-        title=title,
-        release_date=date
-    )
+        new_movie.insert()
 
-    new_movie.insert()
+        response = {
+            "success": True,
+            "actor": new_movie.format()
+        }
 
-    response = {
-        "success": True,
-        "actor": new_movie.format()
-    }
+        return jsonify(response), 200
 
-    return jsonify(response), 200
+    return abort(400)
 
 
 @movie.route('/movie/<int:id>', methods=['PATCH'])
 @requires_auth('update:movies')
-def update_movie(token,id):
+def update_movie(token, id):
 
     movie = Movie.query.get(id)
 
@@ -73,40 +88,50 @@ def update_movie(token,id):
 
     data = request.get_json()
 
+    if data is None:
+        abort(400)
+
     try:
-        title, date = data["title"], data["release_date"]    
+        title, date = data["title"], data["release_date"]
     except KeyError:
-        abort(400) 
+        abort(400)
 
-    movie.title = title
-    movie.release_date = date
+    if validate(title, date):
 
-    movie.update()
+        movie.title = title
+        movie.release_date = date
 
-    response = {
-        'success': True,
-        'message': "Movie Updated!",
-        'movie': movie.format()
-    }
+        try:
+            movie.update()
+        except:
+            abort(422)
 
-    return jsonify(response), 200
+        response = {
+            'success': True,
+            'message': "Movie Updated!",
+            'movie': movie.format()
+        }
+
+        return jsonify(response), 200
+
+    return abort(400)
 
 
 @movie.route('/movie/<int:id>', methods=['DELETE'])
 @requires_auth('delete:movies')
-def delete_movie(token,id):
+def delete_movie(token, id):
     if not id:
         abort(404)
 
     data = Movie.query.get(id)
-    if not data:
+
+    if data is None:
         abort(404)
 
     try:
         data.delete()
 
-    except Exception as e:
-        print(e)
+    except:
         abort(422)
 
     response = {
