@@ -83,7 +83,7 @@ def add_new_actor(token):
             return jsonify({
                 "mesage": "This actor is already available",
                 "success": False
-            }),200
+            }), 200
 
         try:
             new_actor.insert()
@@ -97,8 +97,6 @@ def add_new_actor(token):
         return jsonify(response), 200
 
     return abort(400)
-
-    
 
 
 @actor.route('/actor/<int:id>', methods=['PATCH'])
