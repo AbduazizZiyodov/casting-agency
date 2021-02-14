@@ -6,13 +6,14 @@ from ..auth import requires_auth, AuthError
 
 
 def validate(title, date):
+    try:
+        if len(title) > 1 and len(date) > 3:
+            return True
 
-    if len(title) > 1 and len(date) > 3:
-        return True
-
-    else:
+        else:
+            return False
+    except TypeError:
         return False
-
 
 @movie.route('/movies', methods=['GET'])
 @requires_auth('read:movies')
