@@ -5,8 +5,10 @@ from flask import (
     url_for,
     redirect
 )
+from os import getenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from dotenv import load_dotenv
 from logging import FileHandler, Formatter, INFO
 # -------------------------------------------- #
 from database.models import db, Actor, Movie
@@ -14,6 +16,8 @@ from views.actor import actor
 from views.movie import movie
 from views.auth import requires_auth, AuthError
 
+
+load_dotenv()
 
 api = Flask(__name__)
 
@@ -23,7 +27,7 @@ api.register_blueprint(movie, url_prefix='/api')
 db.init_app(api)
 db.app = api
 
-api.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://abduaziz:2121@localhost:5432/casting"
+api.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 api.debug = True
 
 CORS(api,
