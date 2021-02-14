@@ -6,6 +6,7 @@ from logging import Formatter, FileHandler, INFO
 from flask_migrate import Migrate, MigrateCommand
 # --------------------------------------------- #
 from main import api, db
+from helpers import db_prepare
 
 
 migrate = Migrate(api, db)
@@ -24,9 +25,7 @@ api.logger.addHandler(file_handler)
 
 @manager.command
 def prepare():
-    db.session.commit()
-    db.drop_all()
-    db.create_all()
+    db_prepare()
 
 @manager.command
 def runserver(): 
