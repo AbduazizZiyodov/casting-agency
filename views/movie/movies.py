@@ -38,6 +38,18 @@ def get_all_movies(token):
 
     return jsonify(response), 200
 
+@movie.route('/movie/<int:id>', methods = ['GET'])
+@requires_auth('read:movies')
+def get_single_movie(token, id):
+    data = Movie.query.get(id)
+
+    if data is None:
+        return jsonify({
+            "message": "No Movie Found",
+            "success": False
+        }),404 
+
+    return jsonify(data.format()),200
 
 @movie.route('/movies/add', methods=['POST'])
 @requires_auth('add:movies')
