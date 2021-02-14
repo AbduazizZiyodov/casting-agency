@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from main import api
 from settings import ASSISTANT_TOKEN, DIRECTOR_TOKEN, PRODUCER_TOKEN
 from database.models import Actor, Movie
-
+from helpers import db_prepare, fill_database
 
 # Define Auth Headers:
 assistant_header = {
@@ -21,6 +21,8 @@ producer_header = {
     "Authorization": f"Bearer {PRODUCER_TOKEN}"
 }
 
+db_prepare()
+fill_database()
 
 # Test Case
 class ApiTestCase(unittest.TestCase):
