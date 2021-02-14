@@ -12,24 +12,29 @@ from ..auth import requires_auth, AuthError
 
 # Request Data Validator:
 def is_num(n):
-    if isinstance(n, int):
-        return True
-    if isinstance(n, float):
-        return n.is_integer()
+    try:
+        if isinstance(n, int):
+            return True
+        if isinstance(n, float):
+            return n.is_integer()
 
-    return False
+        return False
+    except TypeError:
+        return False    
 
 
 def validate(name, age, gender):
     genders = ["men", "women"]
-
-    if len(name) > 1 and \
-            gender.lower() in genders and \
-            is_num(age):
-        return True
-    else:
+    try:
+        if len(name) > 1 and \
+                gender.lower() in genders and \
+                is_num(age):
+            return True
+        else:
+            return False
+            
+    except TypeError:
         return False
-
 
 @actor.route('/actors', methods=['GET'])
 @requires_auth('read:actors')
@@ -77,7 +82,7 @@ def add_new_actor(token):
             gender=gender.lower()
         )
 
-        actor = Actor.query.filter_by(name=data["name"]).first()
+        actor = Actor.query.filter_by(name=name).first()
 
         if actor:
             return jsonify({
@@ -133,8 +138,8 @@ def update_actor(token, id):
             'message': "Actor Updated!",
             'actor': actor.format()
         }
-        return jsonify(response), 200
 
+        return jsonify(response), 200
     else:
         return abort(400)
 
@@ -147,7 +152,7 @@ def delete_actor(tokenm, id):
 
     data = Actor.query.get(id)
 
-    if not data:
+    if data is None:
         abort(404)
     try:
         data.delete()
