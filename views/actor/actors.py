@@ -57,6 +57,18 @@ def get_all_actors(token):
 
     return jsonify(response), 200
 
+@actor.route('/actor/<int:id>', methods = ['GET'])
+@requires_auth('read:actors')
+def get_single_actor(token, id):
+    data = Actor.query.get(id)
+
+    if data is None:
+        return jsonify({
+            "message": "No Actor Found",
+            "success": False
+        }),404 
+
+    return jsonify(data.format()),200
 
 @actor.route('/actors/add', methods=['POST'])
 @requires_auth('add:actors')
