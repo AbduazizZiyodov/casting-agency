@@ -32,14 +32,14 @@ class ApiTestCase(unittest.TestCase):
         self.actor_data = {
             "name": 'new_artist',
             "age": 99,
-            "gender": 'artist_gender'
+            "gender": 'men'
 
         }
 
         self.actor_patch_data = {
             "name": 'new_artist_1',
             "age": 99,
-            "gender": 'artist_gender'
+            "gender": 'men'
         }
 
         self.movie_data = {
