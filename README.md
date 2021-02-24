@@ -236,3 +236,123 @@ Response:
     "success": False
 }
 ```
+### `GET` - Movie endpoints
+
+##### 1. GET MOVIES
+
+* Methods: **GET**
+* URL: `/api/movies`
+* Permission: `read:movies`
+
+Sample Request using CURL:
+
+```bash
+curl --location --request GET \
+'https://abduaziz-casting-agency.herokuapp.com/api/movies' \
+--header 'Authorization: Bearer <token>'
+```
+
+Sample Request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/movies"
+
+payload={}
+headers = {
+  'Authorization': 'Bearer <token>'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+Response:
+
+*   Success(200):
+
+```json
+
+{
+        "success": True,
+        "number_of_movies": 2),
+        "movies": [
+            {
+                "id": "number",
+                "title": "movie title",
+                "release_date": "1999"
+            },
+            {
+                "id": "number",
+                "title": "movie title",
+                "release_date": "1999"
+            },
+            
+        ]
+}
+
+```
+*   Not Found(404)
+
+```json
+{
+    "message": "No Movies Found",
+    "number_of_movies": 0,
+    "success": False
+}
+```
+
+##### 2. GET MOVIE
+
+* Methods: **GET**
+* URL: `/api/movie/<id>`
+* Permission: `read:movies`
+
+Sample Request using CURL:
+
+```bash
+curl --location --request GET \
+'https://abduaziz-casting-agency.herokuapp.com/api/movie/<id>' \
+--header 'Authorization: Bearer <token>'
+```
+
+Sample Request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/movie/<id>"
+
+payload={}
+headers = {
+  'Authorization': 'Bearer <token>'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+Response:
+
+*   Success(200):
+
+```json
+
+{
+    "id": "number",
+    "title": "movie title",
+    "release_date": "1999"
+}
+
+```
+*   Not Found(404)
+
+```json
+{
+    "message": "No Movie Found",
+    "success": False
+}
+```
