@@ -419,14 +419,14 @@ Response:
 {
     "success": True,
     "actor": {
-        "id": "number",
-        "title": "movie title",
-        "release_date": "1999" 
-    } 
+        "name": "actor_name",
+        "gender": "actor_gender",
+        "age": "actor_age"  
+    }
 }
 
 ```
-*   Not Found(400)
+*   Bad Request(400)
 
 ```json
 {
@@ -439,7 +439,7 @@ Response:
 ### `POST` - Movie endpoints
 
 * Methods: **POST**
-* URL: `/api/movie`
+* URL: `/api/movies`
 * Permission: `add:movies`
 
 >[!] Required Request Body
@@ -501,7 +501,157 @@ Response:
 }
 
 ```
-*   Not Found(400)
+*   Bad Request(400)
+
+```json
+{
+    "success": False,
+    "error": 400,
+    "message": "Bad Request"
+}
+```
+
+### `PATCH` - Actor endpoints
+
+* Methods: **PATCH**
+* URL: `/api/actor/<id>`
+* Permission: `update:actors`
+
+>[!] Required Request Body
+
+Request body structure:
+
+```json
+{
+    "name": str,
+    "age": int,
+    "gender": "men" or "women"
+}
+```
+
+Sample Request using Curl:
+
+```bash
+curl --location --request PATCH \
+'https://abduaziz-casting-agency.herokuapp.com/api/actor/<id>' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"name": "Updated Actor Data",
+	"age":93,
+	"gender":"Men"
+}'
+```
+
+Sample Request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/actor/<id>"
+
+payload="{\r\n\t\"name\": \"Updated Actor Data\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Men\"\r\n}"
+headers = {
+  'Authorization': 'Bearer <token>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+```
+Response:
+
+*   Success(200):
+
+```json
+
+{
+    "success": True,
+    "message": "Actor Updated!",
+    "actor": {
+        "name": "actor_name",
+        "gender": "actor_gender",
+        "age": "actor_age"  
+    }
+}
+
+```
+*   Bad Request(400)
+
+```json
+{
+    "success": False,
+    "error": 400,
+    "message": "Bad Request"
+}
+```
+
+### `PATCH` - Movie endpoints
+
+* Methods: **PATCH**
+* URL: `/api/movie/<id>`
+* Permission: `update:movies`
+
+>[!] Required Request Body
+
+Request body structure:
+
+```json
+{
+    "title": str,
+    "release_date": int,
+}
+```
+
+Sample Request using Curl:
+
+```bash
+curl --location --request PATCH \
+'https://abduaziz-casting-agency.herokuapp.com/api/movie/<id>' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "Updated Film",
+	"release_date": "1999"
+}'
+```
+
+Sample Request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/movie/<id>"
+
+payload="{\r\n\t\"title\": \"Updated Film\",\r\n\t\"release_date\": \"1999\"\r\n}"
+headers = {
+  'Authorization': 'Bearer <token>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+Response:
+
+*   Success(200):
+
+```json
+
+{
+    "success": True,
+    "message": "Movie Updated!",
+    "movie": {
+        "title": "Updated Film",
+        "release_date": "1999"
+    }   
+}
+
+```
+*   Bad Request(400)
 
 ```json
 {
