@@ -71,9 +71,10 @@ $ python wsgi.py #or
 $ python manage.py runserver 
 ```
 
-You can get JWT tokens by navigate this page: 
+You can get JWT tokens by navigate this page:
+``` 
 https://abduaziz.us.auth0.com/authorize?audience=casting_id&response_type=token&client_id=37TyLsTlvmZdXN5XL4SIjZp7drUTsw7h&redirect_uri=http://127.0.0.1:5000/login-results
-
+```
 
 ## API reference
 
@@ -277,7 +278,7 @@ Response:
 
 {
         "success": True,
-        "number_of_movies": 2),
+        "number_of_movies": 2,
         "movies": [
             {
                 "id": "number",
@@ -354,5 +355,158 @@ Response:
 {
     "message": "No Movie Found",
     "success": False
+}
+```
+
+
+### `POST` - Actor endpoints
+
+* Methods: **POST**
+* URL: `/api/actors`
+* Permission: `add:actors`
+
+>[!] Required Request Body
+
+Request body structure:
+
+```json
+{
+    "name": str,
+    "age": int,
+    "gender": "men" or "women"
+}
+```
+
+Sample Request using Curl:
+
+```bash
+curl --location --request POST \
+'https://abduaziz-casting-agency.herokuapp.com/api/actors/add' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"name": "New Actor Name",
+	"age": 99,
+	"gender": "Men"
+}'
+```
+
+Sample Request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/actors/add"
+
+payload="{\r\n\t\"name\": \"New Actor Name\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Men\"\r\n}"
+headers = {
+  'Authorization': 'Bearer <token>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+
+Response:
+
+*   Success(200):
+
+```json
+
+{
+    "success": True,
+    "actor": {
+        "id": "number",
+        "title": "movie title",
+        "release_date": "1999" 
+    } 
+}
+
+```
+*   Not Found(400)
+
+```json
+{
+    "success": False,
+    "error": 400,
+    "message": "Bad Request"
+}
+```
+
+### `POST` - Movie endpoints
+
+* Methods: **POST**
+* URL: `/api/movie`
+* Permission: `add:movies`
+
+>[!] Required Request Body
+
+Request body structure:
+
+```json
+{
+    "title": str,
+    "release_date": int,
+}
+```
+
+Sample Request using Curl:
+
+```bash
+curl --location --request POST \
+'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "New Super Film",
+	"release_date": "1999"
+}'
+```
+
+Sample Request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/movies/add"
+
+payload="{\r\n\t\"title\": \"New Super Film\",\r\n\t\"release_date\": \"1999\"\r\n}"
+headers = {
+  'Authorization': 'Bearer <token>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+
+```
+
+Response:
+
+*   Success(200):
+
+```json
+
+{
+    "success": True,
+    "movie": {
+        "title": "New Super Film",
+        "release_date": "1999"
+    }
+}
+
+```
+*   Not Found(400)
+
+```json
+{
+    "success": False,
+    "error": 400,
+    "message": "Bad Request"
 }
 ```
