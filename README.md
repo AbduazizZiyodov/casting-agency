@@ -3,13 +3,15 @@
 >Udacity Full Stack Web Developer Nanodegree: Final Project!
 ## Intro
 
+>**NOTE**: API hosted🚀: abduaziz-casting-agency.herokuapp.com 
+
 The Casting Agency API supports a basic agency by allowing users manage their movies and actors. 
 There are 3 different user roles:
  - Casting Assistant
  - Casting Director
  - Casting Producer
 
-And role based permissions:
+Role based permissions:
 - Casting Assistant:
     - `read:actors`
     - `read:movies`
@@ -21,59 +23,123 @@ And role based permissions:
     - `update:actors`
     - `update:movies`
 - Casting Producer:
-    **All Permissions Director + Add or Delete Movie.**
+    - `read:actors`
+    - `read:movies`
+    - `add:actors`
+    - `delete:actors`
+    - `update:actors`
+    - `update:movies`
+    - `delete:actors`
+    - `delete:movies`
 
-## Getting Started
+## Getting Started 😉
 
 Requirements:
-- Python3
-- Database(sqlite or postgresql)
-- Terminal(+curl)
-- PIP packages
-- Postman(optional)
+- Python 3 🐍
+- Database(postgresql optional) 💾
+- PIP packages 📦
+- CURL for testing this API 💣
+>[!] Postman (recomended) 🚀
 
-Clone this repo:
+
+First steeps: clone this repo:
 
 ```bash
 $ git clone https://github.com/AbduazizZiyodov/casting-agency.git
 $ cd casting-agency/
 ```
-Create and Activate virtual enviroment:
+Create and activate your virtual enviroment:
 
 ```bash
 $ python -m venv env
 $ source env/scripts/activate
 ```
 
-Install all required packages:
+Install all required pip packages:
 
 ```bash
 $ pip install -r requirements.txt
 ```
-Change some configuration vars:
+
+Change some config vars in your enviroment file:
 
 ```bash
 $ touch .env #create dotenv file
 $ nano .env
-------------------
+--------------------
 DATABASE_URL = "url"
--------------------
+--------------------
 ```
 
-Running development server. Before running server, prepare your database.
+Before running server, prepare your database.
 
 ```bash
 $ python manage.py db init
 $ python manage.py db migrate
 $ python manage.py db upgrade
-# run server:
-$ python wsgi.py #or
+```
+
+Run:
+
+```bash
+$ python wsgi.py # or
 $ python manage.py runserver 
 ```
 
-You can get JWT tokens by navigate this page:
+You can get **JWT** tokens by navigate this page:
 ``` 
 https://abduaziz.us.auth0.com/authorize?audience=casting_id&response_type=token&client_id=37TyLsTlvmZdXN5XL4SIjZp7drUTsw7h&redirect_uri=http://127.0.0.1:5000/login-results
+```
+
+## Testing
+
+#### 1. First method: CURL
+
+**NOTE** You can find more commands from API reference :)
+
+Open your terminal and type `curl`:
+![CURL](/screenshots/curl.PNG)
+
+And run testing commands in API reference.
+
+#### 2. Second method: Unittest
+
+**NOTE** I have written my own test case :)
+
+In project directory you should define JWT tokens in file `settings.py`:
+![JWT](/screenshots/settings.PNG)
+
+After defining tokens, you can run testing process using unittest:
+
+![TEST](/screenshots/test_result.PNG)
+
+#### 3. Third method: Postman
+
+**NOTE:** I have written my own postman collection for this API. You can use it for testing :)
+
+> Register and Install postman: https://www.postman.com/downloads/
+
+Open your Postman, import my collection in your dashboard:
+
+![IMPORT](/screenshots/import.PNG)
+
+Prepare your enviroment. Define api host and JWT tokens from Globals tab:
+
+![GLOBALS](/screenshots/globals.PNG)
+
+After defining, you can open your runner and drag your collection:
+
+![RUNNER](/screenshots/runner.PNG)
+
+Test this API using Postman runner:
+
+![POSTMAN](/screenshots/postman.PNG)
+
+🎉 Yes! 
+
+```python
+>>> test.is_success()
+[out] True
 ```
 
 ## API reference
@@ -83,11 +149,11 @@ In this API authentication is **required**. This API uses JWT token for authenti
 ### Endpoints
 
 **Actor** endpoints:
-*   `api/actors` - methods: [GET]. Get all actor data.
+*   `api/actors` - methods: [GET]. **Get** all actor data.
 *   `api/actor/<id>` - methods: [GET,PATCH,DELETE].
-    *   GET - get actor data by id.
-    *   PATCH - update actor.
-    *   DELETE - delete actor.
+    *   **GET** - get actor data by id.
+    *   **PATCH** - update actor.
+    *   **DELETE** - delete actor.
 *   `api/actors/add` - methods: [POST]. Add new Actor
 
 <hr>
@@ -95,16 +161,18 @@ In this API authentication is **required**. This API uses JWT token for authenti
 **Movie** endpoints:
 *   `api/movies` - methods: [GET]. Get all actor data.
 *   `api/movie/<id>` - methods: [GET,PATCH,DELETE].
-    *   GET - get movie data by id.
-    *   PATCH - update movie.
-    *   DELETE - delete movier.
+    *   **GET** - get movie data by id.
+    *   **PATCH** - update movie.
+    *   **DELETE** - delete movier.
 *   `api/movies/add` - methods: [POST]. Add new Movie
 
-### API Error handling
+### Error handling & error messages
 
-*   400 - bad request error.
-*   401 - all auth errors (+ with description).
-*   404 - not found error.
+Type of error messages is **JSON** (json response)
+
+*   **400** - bad request error.
+*   **401** - all auth errors (+ with description).
+*   **404** - not found error.
 
 >Sample Response:
 >```json
@@ -117,7 +185,7 @@ In this API authentication is **required**. This API uses JWT token for authenti
 
 ### `GET` - Actor endpoints
 
-##### 1. GET ACTORS
+##### 1. `GET` ACTORS
 
 * Methods: **GET**
 * URL: `/api/actors`
@@ -184,7 +252,7 @@ Response:
 }
 ```
 
-##### 2. GET ACTOR
+##### 2. `GET` ACTOR
 
 * Methods: **GET**
 * URL: `/api/actor/<id>`
@@ -239,7 +307,7 @@ Response:
 ```
 ### `GET` - Movie endpoints
 
-##### 1. GET MOVIES
+##### 1. `GET` MOVIES
 
 * Methods: **GET**
 * URL: `/api/movies`
@@ -305,7 +373,7 @@ Response:
 }
 ```
 
-##### 2. GET MOVIE
+##### 2. `GET` MOVIE
 
 * Methods: **GET**
 * URL: `/api/movie/<id>`
@@ -660,3 +728,63 @@ Response:
     "message": "Bad Request"
 }
 ```
+
+### `DELETE` - Actor endpoints
+
+* Methods: **DELETE**
+* URL: `/api/actor/<id>`
+* Permission: `delete:actors`
+
+>[!] Request body is not required
+
+Sample request using CURL:
+
+```bash
+curl --location --request DELETE \
+'https://abduaziz-casting-agency.herokuapp.com/api/actor/1' \
+--header 'Authorization: Bearer <token>'
+```
+
+Sample request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/actor/1"
+
+payload={}
+headers = {
+  'Authorization': 'Bearer <token>'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+Response:
+
+*   Success(200):
+
+```json
+{
+    "success": True,
+    "id": 1
+}
+```
+
+*   Not Found(404):
+
+```json
+{
+    "success": False,
+    "error": 404,
+    "message": "Not found"
+}
+```
+
+#### Author:
+
+Abduaziz Ziyodov - Backend Developer (python).
+
+><i>26.02.2021<i>
