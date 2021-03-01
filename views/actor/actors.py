@@ -55,10 +55,7 @@ def get_all_actors(token):
         }), 200
     # build response data and add actors data
     response = {
-        "success": True,
-        "actors": [
-            actor.format() for actor in data
-        ]
+        actor.format() for actor in data
     }
     # finaly return json response
     return jsonify(response), 200
