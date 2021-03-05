@@ -454,7 +454,7 @@ Request body structure:
 {
     "name": str,
     "age": int,
-    "gender": "men" or "women"
+    "gender": "men" or "woman"
 }
 ```
 
@@ -606,7 +606,7 @@ Request body structure:
 {
     "name": str,
     "age": int,
-    "gender": "men" or "women"
+    "gender": "men" or "woman"
 }
 ```
 
