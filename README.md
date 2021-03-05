@@ -1,12 +1,19 @@
-# Casting Agency
+# Casting Agency 😁
 
->Udacity Full Stack Web Developer Nanodegree: Final Project!
+>Udacity Full Stack Web Developer Nanodegree: Final Project🥳 !
 ## Intro
 
->**NOTE**: API hosted🚀: abduaziz-casting-agency.herokuapp.com 
+>**NOTE**: API hosted in heroku 🚀: abduaziz-casting-agency.herokuapp.com 
+
+
+> ⚠️ User data for testing this project:
+>*   producer@mail.com
+>*   director@mail.com
+>*   assistant@mail.com
+>-   Password: $Udacity007
 
 The Casting Agency API supports a basic agency by allowing users manage their movies and actors. 
-There are 3 different user roles:
+There are 3 different user roles👥:
  - Casting Assistant
  - Casting Director
  - Casting Producer
@@ -35,14 +42,14 @@ Role based permissions:
 ## Getting Started 😉
 
 Requirements:
-- Python 3 🐍
-- Database(postgresql optional) 💾
+- Python 3 🐍 (https://www.python.org/)
+- Database(https://www.postgresql.org/, pgadmin optional) 💾
 - PIP packages 📦
 - CURL for testing this API 💣
->[!] Postman (recomended) 🚀
+>[!] Postman (recommended) 🚀
 
 
-First steeps: clone this repo:
+First steeps -> clone this repo:
 
 ```bash
 $ git clone https://github.com/AbduazizZiyodov/casting-agency.git
@@ -91,9 +98,12 @@ You can get **JWT** tokens by navigate this page:
 https://abduaziz.us.auth0.com/authorize?audience=casting_id&response_type=token&client_id=37TyLsTlvmZdXN5XL4SIjZp7drUTsw7h&redirect_uri=http://127.0.0.1:5000/login-results
 ```
 
-## Testing
+>NOTE: you can check your JWT token by navigating this page: jwt.io
+> ![CURL](/screenshots/jwtio.PNG)
 
-#### 1. First method: CURL
+# Testing
+
+### 1. First method: CURL
 
 **NOTE** You can find more commands from API reference :)
 
@@ -105,7 +115,7 @@ And run testing commands in API reference.
 For example:
 ![CURL_EX](/screenshots/curl_eg.PNG)
 
-#### 2. Second method: Unittest
+### 2. Second method: Unittest
 
 **NOTE** I have written my own test case :)
 
@@ -116,7 +126,7 @@ After defining tokens, you can run testing process using unittest:
 
 ![TEST](/screenshots/test_result.PNG)
 
-#### 3. Third method: Postman
+### 3. Third method: Postman
 
 **NOTE:** I have written my own postman collection for this API. You can use it for testing :)
 
