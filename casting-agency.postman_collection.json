@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1eec56e1-eab9-4422-b54e-b4e1947ec5be",
+		"_postman_id": "c06ba42b-654b-431d-8bb0-8a148e3027f2",
 		"name": "Abduaziz-FSND-Capstone",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -120,7 +120,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"New Actor Name\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"New Actor Name\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Updated Actor Data\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Updated Actor Data\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -611,7 +611,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Abduaziz\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Abduaziz\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -764,7 +764,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Updated Super Actor\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Updated Super Actor\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1046,7 +1046,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"New Super Actor\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"New Super Actor\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1148,7 +1148,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"UpdatedActor\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"UpdatedActor\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1348,7 +1348,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Abduaziz\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Abduaziz\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1552,7 +1552,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"nameee\": \"UpdatedActor,\r\n\t\"gender\":\"Men\"\r\n}",
+							"raw": "{\r\n\t\"nameee\": \"UpdatedActor,\r\n\t\"gender\":\"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1711,7 +1711,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Abduaziz\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Abduaziz\",\r\n\t\"age\": 99,\r\n\t\"gender\": \"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1793,7 +1793,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"New Actor Data\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Men\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"New Actor Data\",\r\n\t\"age\":93,\r\n\t\"gender\":\"Man\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
