@@ -104,7 +104,7 @@ def add_new_actor(token):
             gender=gender.lower()
         )
         # check for: if actor exits!
-        actor = Actor.query.filter_by(name=name).first()
+        actor = Actor.query.filter_by(name=name, age=age).first()
         # if actor found, return json response with required message
         if actor:
             return jsonify({
