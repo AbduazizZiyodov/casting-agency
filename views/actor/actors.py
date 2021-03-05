@@ -26,7 +26,7 @@ def is_num(n):
 # Simple validate function
 def validate(name, age, gender):
     # define genders
-    genders = ["men", "woman"]
+    genders = ["man", "woman"]
     try:
         # check data length and check gender & age
         if len(name) > 1 and \
