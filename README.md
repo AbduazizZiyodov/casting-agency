@@ -102,6 +102,9 @@ Open your terminal and type `curl`:
 
 And run testing commands in API reference.
 
+For example:
+![CURL_EX](/screenshots/curl_eg.PNG)
+
 #### 2. Second method: Unittest
 
 **NOTE** I have written my own test case :)
