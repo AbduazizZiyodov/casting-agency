@@ -1,9 +1,14 @@
 # Casting Agency 😁
 
 >Udacity Full Stack Web Developer Nanodegree: Final Project🥳 !
+
+![CURL](/screenshots/agency.PNG)
 ## Intro
 
->**NOTE**: API hosted in heroku 🚀: abduaziz-casting-agency.herokuapp.com 
+>**NOTE**: Full Project: <br>
+> Project API hosted in heroku 🚀: abduaziz-casting-agency.herokuapp.com <br> 
+>Project API docs: abduaziz-agency.herokuapp.com/docs
+>Frontend:
 
 
 > ⚠️ User data for testing this project:
