@@ -156,7 +156,7 @@ Test this API using Postman runner:
 
 ```python
 >>> test.is_success()
-[out] True
+[OUT] True
 ```
 
 ## API reference
@@ -240,7 +240,7 @@ Response:
 ```json
 
 {
-        "success": True,
+        "success": true,
         "actors": [
             {
                 "id": "number",
@@ -362,7 +362,7 @@ Response:
 ```json
 
 {
-        "success": True,
+        "success": true,
         "number_of_movies": 2,
         "movies": [
             {
@@ -502,7 +502,7 @@ Response:
 ```json
 
 {
-    "success": True,
+    "success": true,
     "actor": {
         "name": "actor_name",
         "gender": "actor_gender",
@@ -578,7 +578,7 @@ Response:
 ```json
 
 {
-    "success": True,
+    "success": true,
     "movie": {
         "title": "New Super Film",
         "release_date": "1999"
@@ -652,7 +652,7 @@ Response:
 ```json
 
 {
-    "success": True,
+    "success": true,
     "message": "Actor Updated!",
     "actor": {
         "name": "actor_name",
@@ -727,7 +727,7 @@ Response:
 ```json
 
 {
-    "success": True,
+    "success": true,
     "message": "Movie Updated!",
     "movie": {
         "title": "Updated Film",
@@ -785,7 +785,7 @@ Response:
 
 ```json
 {
-    "success": True,
+    "success": true,
     "id": 1
 }
 ```
@@ -839,7 +839,7 @@ Response:
 
 ```json
 {
-    "success": True,
+    "success": true,
     "id": 1
 }
 ```
