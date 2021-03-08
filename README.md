@@ -800,6 +800,60 @@ Response:
 }
 ```
 
+### `DELETE` - Movie endpoints
+
+* Methods: **DELETE**
+* URL: `/api/movie/<id>`
+* Permission: `delete:actors`
+
+>[!] Request body is not required
+
+Sample request using CURL:
+
+```bash
+curl --location --request DELETE \
+'https://abduaziz-casting-agency.herokuapp.com/api/movie/1' \
+--header 'Authorization: Bearer <token>'
+```
+
+Sample request using Python:
+
+```python
+import requests
+
+url = "https://abduaziz-casting-agency.herokuapp.com/api/movie/1"
+
+payload={}
+headers = {
+  'Authorization': 'Bearer <token>'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+Response:
+
+*   Success(200):
+
+```json
+{
+    "success": True,
+    "id": 1
+}
+```
+
+*   Not Found(404):
+
+```json
+{
+    "success": False,
+    "error": 404,
+    "message": "Not found"
+}
+```
+
 #### Author:
 
 Abduaziz Ziyodov - Backend Developer (python).
