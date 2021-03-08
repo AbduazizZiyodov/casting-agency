@@ -856,6 +856,6 @@ Response:
 
 #### Author:
 
-Abduaziz Ziyodov - Backend Developer (python).
-
-><i>08.03.2021<i>
+Abduaziz Ziyodov - Backend Developer (python). <br>
+Project Passed `:)`
+><i>09.03.2021<i>
