@@ -804,7 +804,7 @@ Response:
 
 * Methods: **DELETE**
 * URL: `/api/movie/<id>`
-* Permission: `delete:actors`
+* Permission: `delete:movies`
 
 >[!] Request body is not required
 
