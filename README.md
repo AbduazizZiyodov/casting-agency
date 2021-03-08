@@ -6,9 +6,8 @@
 ## Intro
 
 >**NOTE**: Full Project: <br>
-> Project API hosted in heroku 🚀: abduaziz-casting-agency.herokuapp.com <br> 
->Project API docs: abduaziz-agency.herokuapp.com/docs
->Frontend:
+>Project API hosted in heroku 🚀: abduaziz-casting-agency.herokuapp.com <br> 
+>Project API docs: abduaziz-casting-agency.herokuapp.com/docs
 
 
 > ⚠️ User data for testing this project:
