@@ -194,7 +194,7 @@ Type of error messages is **JSON** (json response)
 >Sample Response:
 >```json
 >{
->   "success": False,
+>   "success": false,
 >   "error": 404,
 >   "message": "Not found"
 >}
@@ -265,7 +265,7 @@ Response:
 {
     "message": "No Actors Found",
     "number_of_actors": 0,
-    "success": False
+    "success": false
 }
 ```
 
@@ -319,7 +319,7 @@ Response:
 ```json
 {
     "message": "No Actor Found",
-    "success": False
+    "success": false
 }
 ```
 ### `GET` - Movie endpoints
@@ -386,7 +386,7 @@ Response:
 {
     "message": "No Movies Found",
     "number_of_movies": 0,
-    "success": False
+    "success": false
 }
 ```
 
@@ -439,7 +439,7 @@ Response:
 ```json
 {
     "message": "No Movie Found",
-    "success": False
+    "success": false
 }
 ```
 
@@ -515,7 +515,7 @@ Response:
 
 ```json
 {
-    "success": False,
+    "success": false,
     "error": 400,
     "message": "Bad Request"
 }
@@ -590,7 +590,7 @@ Response:
 
 ```json
 {
-    "success": False,
+    "success": false,
     "error": 400,
     "message": "Bad Request"
 }
@@ -666,7 +666,7 @@ Response:
 
 ```json
 {
-    "success": False,
+    "success": false,
     "error": 400,
     "message": "Bad Request"
 }
@@ -740,7 +740,7 @@ Response:
 
 ```json
 {
-    "success": False,
+    "success": false,
     "error": 400,
     "message": "Bad Request"
 }
@@ -794,7 +794,7 @@ Response:
 
 ```json
 {
-    "success": False,
+    "success": false,
     "error": 404,
     "message": "Not found"
 }
@@ -848,7 +848,7 @@ Response:
 
 ```json
 {
-    "success": False,
+    "success": false,
     "error": 404,
     "message": "Not found"
 }
